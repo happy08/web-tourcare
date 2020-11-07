@@ -1,0 +1,100 @@
+/*
+webkit禁止点击高亮
+*/
+@mixin setTapColor($c:rgba(0,0,0,0)) {
+    -webkit-tap-highlight-color: $c;
+}
+/*
+三角箭头 
+@include arrow(10px ,#ccc,left);
+*/
+@mixin setArrow($width: 10px, $color: #000, $direction: top) {
+    width: 0;
+    font-size: 0;
+    border: $width solid transparent;
+    border-#{$direction}-color: $color;
+}
+
+/*
+设置1px
+@include setTopLine(#ccc);
+*/
+@mixin setTopLine($c: #E6E6E6) {
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    height: 1px;
+    border-top: 1px solid $c;
+    color: $c;
+    transform-origin: 0 0;
+    transform: scaleY(0.5);
+    z-index: 1;
+}
+@mixin setBottomLine($c: #E6E6E6) {
+    content: " ";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 1px;
+    border-bottom: 1px solid $c;
+    color: $c;
+    transform-origin: 0 100%;
+    transform: scaleY(0.5);
+    z-index: 1;
+}
+@mixin setLeftLine($c: #E6E6E6) {
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1px;
+    bottom: 0;
+    border-left: 1px solid $c;
+    color: $c;
+    transform-origin: 0 0;
+    transform: scaleX(0.5);
+    z-index: 1;
+}
+@mixin setRightLine($c: #E6E6E6) {
+    content: " ";
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 1px;
+    bottom: 0;
+    border-right: 1px solid $c;
+    color: $c;
+    transform-origin: 100% 0;
+    transform: scaleX(0.5);
+    z-index: 1;
+}
+
+/*
+设置文字溢出隐藏
+@include setTextHidden1();
+*/
+@mixin setTextHidden1() {
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:1;
+}
+@mixin setTextHidden2() {
+    overflow:hidden;
+    text-overflow:ellipsis;
+    display:-webkit-box;
+    -webkit-box-orient:vertical;
+    -webkit-line-clamp:2;
+}
+
+/*
+设置radio背景
+@include setRadioBg("FFFFFF");
+*/
+@mixin setRadioBg($color) {
+    background-image: url("data:image/svg+xml, %3Csvg width='20' height='15' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 8l2.5-2.5 5 4.5 10-9.5L20 3 8 15H7z' fill='%23#{$color}' fill-rule='evenodd'/%3E%3C/svg%3E");
+}

@@ -1,0 +1,257 @@
+/* 动画延迟*/
+@each $i in 1,2,3,4,5,6,7,8,9,10,11,12,13,14,15 {
+    .ani-d-#{$i}{
+        animation-delay:$i/10 +s
+    }
+}
+
+// Animation
+%common-animation{
+    animation-duration: .5s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-in-out;
+}
+//一次动画
+@mixin make-animation($keyframeName) {
+    .#{$keyframeName}-enter-active, .#{$keyframeName}-in,
+    .#{$keyframeName}-leave-active, .#{$keyframeName}-out {
+        @extend %common-animation;
+    }
+    .#{$keyframeName}-enter-active, .#{$keyframeName}-in {
+        animation-name: #{$keyframeName}-in;
+    }
+    .#{$keyframeName}-leave-active, .#{$keyframeName}-out {
+        animation-name: #{$keyframeName}-out;
+    }
+}
+//下滑
+@include make-animation(cy-slide-down);
+//上滑
+@include make-animation(cy-slide-up);
+//左滑
+@include make-animation(cy-slide-left);
+//右滑
+@include make-animation(cy-slide-right);
+//渐显
+@include make-animation(cy-fade);
+//放大
+@include make-animation(cy-zoom);
+
+
+%common-animation-infinite{
+    animation-duration: .5s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+//永动动画
+@mixin make-animation-infinite($keyframeName) {
+    .#{$keyframeName} {
+        @extend %common-animation-infinite;
+        animation-name: #{$keyframeName};
+    }
+}
+
+//fade-in fade-out
+@keyframes cy-fade-in {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes cy-fade-out {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+//slide-down
+@keyframes cy-slide-down-in {
+    from {
+        transform: translate3d(0, -100%, 0);
+        visibility: visible;
+    }
+    to {
+        transform: translate3d(0, 0, 0);
+    }
+}
+@keyframes cy-slide-down-out {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+    to {
+        visibility: hidden;
+        transform: translate3d(0, -100%, 0);
+    }
+}
+
+//slide-up
+@keyframes cy-slide-up-in {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 100%, 0);
+        visibility: visible;
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+@keyframes cy-slide-up-out {
+    from {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+    to {
+        opacity: 0;
+        visibility: hidden;
+        transform: translate3d(0, 100%, 0);
+    }
+}
+
+//slide-left
+@keyframes cy-slide-left-in {
+    from {
+        opacity: 0;
+        transform: translate3d(-100%, 0, 0);
+        visibility: visible;
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+@keyframes cy-slide-left-out {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+    to {
+        visibility: hidden;
+        transform: translate3d(-100%, 0, 0);
+    }
+}
+
+//slide-right
+@keyframes cy-slide-right-in {
+    from {
+        opacity: 0;
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+    }
+    to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0);
+    }
+}
+@keyframes cy-slide-right-out {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+    to {
+        visibility: hidden;
+        transform: translate3d(100%, 0, 0);
+    }
+}
+
+//zoom 放大显示
+@keyframes cy-zoom-in {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+//zoom 缩小消失
+@keyframes cy-zoom-out {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+}
+
+//放大到消失
+@keyframes cy-zoom-none{
+    0% {
+        width: 100%;
+        height: 100%;
+        opacity: 0.8;
+    }
+    100% {
+        width: 180%;
+        height: 180%;
+        opacity: 0;
+    }
+}
+
+.cy-up{
+    animation-duration: 1.5s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    //animation-direction: alternate;
+    animation-name:cy-up
+}
+@keyframes cy-up {
+    0% {
+        opacity: 0;
+        transform: translate3d(0, 0%, 0);
+    }
+    60% {
+        opacity: 1;
+        transform: translate3d(0, 0%, 0);
+    }
+    100% {
+        opacity: 0;
+        transform: translate3d(0, -100%, 0);
+    }
+} 
+
+
+//rotate转圈
+@keyframes cy-rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+//排名rotate转圈
+.cy-rotate-rank{
+    animation-duration: 5s;
+    animation-fill-mode: both;
+    animation-iteration-count: infinite;
+    //animation-direction: alternate;
+    animation-name:cy-rotate-rank
+}
+@keyframes cy-rotate-rank {
+    0% {
+        transform: rotateY(0deg);
+    }
+    20% {
+        transform: rotateY(360deg);
+    }
+    100% {
+        transform: rotateY(360deg);
+    }
+}
+
+
+
+
+
+
